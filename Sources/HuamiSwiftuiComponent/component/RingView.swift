@@ -20,14 +20,14 @@ public struct RingView: View {
     var colors: [Color] = [Color.darkRed, Color.lightRed]
     var colorsDone: [Color] = [Color.yellow , Color.yellow]
     
-    public init(progress:Binding<CGFloat>, processLabel:Binding<String>){
+    public init(progress:Binding<CGFloat>, progressLabel:Binding<String>){
         self._progress = progress
-        self._progressLabel = processLabel
+        self._progressLabel = progressLabel
     }
     
-    public init(progress:Binding<CGFloat>, processLabel:Binding<String>,size:CGFloat,labelColor:Color,backgroundColor:Color,colors:[Color]){
+    public init(progress:Binding<CGFloat>, progressLabel:Binding<String>,size:CGFloat,labelColor:Color,backgroundColor:Color,colors:[Color]){
         self._progress = progress
-        self._progressLabel = processLabel
+        self._progressLabel = progressLabel
         self.size = size
         self.labelColor = labelColor
         self.backgroundColor = backgroundColor
@@ -73,7 +73,7 @@ struct RingView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.black
-            RingView(progress: .constant(0.8), progressLabel: .constant("10分钟"), isDone: .constant(true))
+            RingView(progress: .constant(0.8), progressLabel: .constant("10分钟"))
         }
     }
 }
