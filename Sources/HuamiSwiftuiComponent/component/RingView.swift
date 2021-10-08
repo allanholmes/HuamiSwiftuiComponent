@@ -56,7 +56,7 @@ public struct RingView: View {
                 .trim(from: 0, to: progress)
                 .stroke(
                     AngularGradient(
-                        gradient: Gradient(colors: process >= 1.0 ? colorsDone : colors),
+                        gradient: Gradient(colors: progress >= 1.0 ? colorsDone : colors),
                         center: .center,
                         startAngle: .degrees(0),
                         endAngle: .degrees(360)
