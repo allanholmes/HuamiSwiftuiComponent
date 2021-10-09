@@ -88,3 +88,9 @@ extension View {
                     .onTapGesture(count:count, perform:action)
             }
 }
+
+extension View {
+    public func toAnyView() -> some View {
+        AnyView(self)
+    }
+}
