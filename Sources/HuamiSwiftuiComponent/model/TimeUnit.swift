@@ -8,8 +8,8 @@
 import Foundation
 
 public enum TimeUnit:String {
-    public case MINUTE = "MINUTE"
-    public case HOUR = "HOUR"
+    case MINUTE = "MINUTE"
+    case HOUR = "HOUR"
     
     public static var allValues:[TimeUnit]{
         return [.MINUTE,.HOUR]
