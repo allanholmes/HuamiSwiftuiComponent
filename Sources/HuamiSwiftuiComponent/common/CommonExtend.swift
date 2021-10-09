@@ -90,7 +90,7 @@ extension View {
 }
 
 extension View {
-    public func toAnyView() -> some View {
+    public func toAnyView() -> AnyView {
         AnyView(self)
     }
 }
