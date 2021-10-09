@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PickableColorViewModel{
+public struct PickableColorViewModel{
     public static var pickableColors:[PickableColor] {
         return [
             PickableColor(backgroundColorLabel: "white",backgroundColor: .white, foregroundColor: .black),
