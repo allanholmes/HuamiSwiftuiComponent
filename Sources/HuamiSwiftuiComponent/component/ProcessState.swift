@@ -8,7 +8,7 @@
 import SwiftUI
 
 @available(iOS 13.0, macOS 10.15, *)
-struct ProcessState: View {
+public struct ProcessState: View {
     var state:StateModel
     var foregroundColor:Color
     
