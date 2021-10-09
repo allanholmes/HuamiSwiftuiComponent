@@ -9,19 +9,19 @@ import Foundation
 import SwiftUI
 
 extension Date {
-    var dateString:String{
+    public var dateString:String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.string(from: self)
     }
     
-    var timeString:String{
+    public var timeString:String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
         return dateFormatter.string(from: self)
     }
     
-    var dateTimeString:String{
+    public var dateTimeString:String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return dateFormatter.string(from: self)
@@ -29,17 +29,17 @@ extension Date {
 }
 
 extension Double {
-    var doubleString:String{
+    public var doubleString:String{
         return String(format:"%.2f",self)
     }
 }
 
 extension Int64 {
-    var intString:String{
+    public var intString:String{
         return String(self)
     }
     
-    var secondsLabel:String{
+    public var secondsLabel:String{
         if self < 60 {
             return "\(self)秒"
         }
@@ -82,7 +82,7 @@ extension View{
 
 
 extension View {
-    func onTapGestureForced(count: Int = 1, perform action: @escaping () -> Void) -> some View {
+    public func onTapGestureForced(count: Int = 1, perform action: @escaping () -> Void) -> some View {
                 self
                     .contentShape(Rectangle())
                     .onTapGesture(count:count, perform:action)
