@@ -34,6 +34,7 @@ public struct BaseInfo<Content,Data>: View where Content:View, Data : Identifiab
             .padding()
                 .blur(radius: ( chosenData != nil && chosenData!.id  == data.id  ) ? -dragWidth*0.02 : 0)
             .frame(maxWidth: .infinity)
+            .foregroundColor(pickedColor.foregroundColor)
             .background(pickedColor.backgroundColor)
             .cornerRadius(14)
             .shadow(color: (self.colorScheme == .dark ? Color.white : Color.black).opacity(0.5), radius: 3, x: 3, y: 3)
