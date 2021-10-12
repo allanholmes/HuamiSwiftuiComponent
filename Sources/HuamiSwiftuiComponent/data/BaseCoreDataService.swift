@@ -33,8 +33,8 @@ open class BaseCoreDataService<ENTITY,MODEL> where ENTITY:NSManagedObject,MODEL:
     }
     
     open func addModel(model:MODEL){
-        let entity = ENTITY(context: viewContext)
-        model.fill(entity: entity)
+        var entity = ENTITY(context: viewContext)
+        model.fill(entity: entity as! MODEL.NSManagedObject)
         do {
             try viewContext.save()
         }catch{

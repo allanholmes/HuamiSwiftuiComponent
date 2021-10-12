@@ -15,6 +15,6 @@ public protocol BaseModel:Identifiable{
     
     init(entity:NSManagedObject)
     
-    func fill(entity:NSManagedObject)->NSManagedObject
+    func fill(entity:NSManagedObject)
     
 }
