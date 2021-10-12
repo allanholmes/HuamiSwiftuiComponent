@@ -17,7 +17,7 @@ open class BaseCoreDataService<ENTITY,MODEL> where ENTITY:NSManagedObject,MODEL:
         self.entityName = entityName
     }
     
-    public func deleteModel(model:MODEL){
+    open func deleteModel(model:MODEL){
         let entity = getEntity(id: model.id)
         if entity != nil {
             viewContext.delete(entity!)
