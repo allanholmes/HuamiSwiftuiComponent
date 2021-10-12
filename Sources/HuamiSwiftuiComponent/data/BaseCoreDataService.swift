@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-public class BaseCoreDataService<ENTITY,MODEL> where ENTITY:NSManagedObject,MODEL:BaseModel{
+open class BaseCoreDataService<ENTITY,MODEL> where ENTITY:NSManagedObject,MODEL:BaseModel{
     public private(set) var viewContext:NSManagedObjectContext
     public private(set) var entityName:String
     
