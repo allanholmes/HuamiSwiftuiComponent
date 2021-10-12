@@ -35,7 +35,6 @@ open class BaseCoreDataService<ENTITY,MODEL> where ENTITY:NSManagedObject,MODEL:
     open func addModel(model:MODEL){
         var entity = ENTITY(context: viewContext)
         model.fill(entity: entity as! MODEL.NSManagedObject)
-        model.updateTime = Date()
         do {
             try viewContext.save()
         }catch{
