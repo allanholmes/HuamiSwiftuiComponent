@@ -29,7 +29,7 @@ public struct BaseInfo<Content,Data>: View where Content:View, Data : Identifiab
         self._chosenData = chosenData
     }
     
-    public init(data:Data,pickedColor:PickableColor,content:Content,actionContents: [AnyView],chosenCallback:@escaping ()->Void,chosenData:Binding<Data?>,shadowColorOverride:Color){
+    public init(data:Data,pickedColor:PickableColor,content:Content,actionContents: [AnyView],chosenCallback:@escaping ()->Void,chosenData:Binding<Data?>,shadowColorOverride:Color?){
         self.data = data
         self.pickedColor = pickedColor
         self.content = content
