@@ -95,6 +95,14 @@ open class BaseCoreDataService<ENTITY,MODEL> where ENTITY:NSManagedObject,MODEL:
         return result
     }
     
+    public func getModel(id:UUID)->MODEL?{
+        let entity = getEntity(id: id)
+        if entity != nil {
+            return MODEL(entity: entity! as! MODEL.NSManagedObject)
+        }
+        return nil
+    }
+    
     open func getEntity(id:UUID) -> ENTITY?{
         let request = NSFetchRequest<ENTITY>(entityName: entityName)
         request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
