@@ -18,6 +18,7 @@ public struct BaseInfo<Content,Data>: View where Content:View, Data : Identifiab
     var data:Data
     @Environment(\.colorScheme) var colorScheme:ColorScheme
     var colors = PickableColorViewModel.pickableColors
+    var shadowColorOverride:Color? = nil
     
     public init(data:Data,pickedColor:PickableColor,content:Content,actionContents: [AnyView],chosenCallback:@escaping ()->Void,chosenData:Binding<Data?>){
         self.data = data
@@ -27,17 +28,38 @@ public struct BaseInfo<Content,Data>: View where Content:View, Data : Identifiab
         self.chosenCallback = chosenCallback
         self._chosenData = chosenData
     }
+    
+    public init(data:Data,pickedColor:PickableColor,content:Content,actionContents: [AnyView],chosenCallback:@escaping ()->Void,chosenData:Binding<Data?>,shadowColorOverride:Color){
+        self.data = data
+        self.pickedColor = pickedColor
+        self.content = content
+        self.actionContents = actionContents
+        self.chosenCallback = chosenCallback
+        self._chosenData = chosenData
+        self.shadowColorOverride = shadowColorOverride
+    }
+    
+    private func needBlur()->Bool{
+        (actionContents.count > 0) && (chosenData != nil && chosenData!.id  == data.id)
+    }
+    
+    private func shadowColor()->Color{
+        if shadowColorOverride != nil {
+            return shadowColorOverride!.opacity(0.5)
+        }
+        return (self.colorScheme == .dark ? Color.white : Color.black).opacity(0.5)
+    }
 
     public var body: some View {
         ZStack{
             content
             .padding()
-                .blur(radius: ( chosenData != nil && chosenData!.id  == data.id  ) ? -dragWidth*0.02 : 0)
+                .blur(radius: needBlur() ? -dragWidth*0.02 : 0)
             .frame(maxWidth: .infinity)
             .foregroundColor(pickedColor.foregroundColor)
             .background(pickedColor.backgroundColor)
             .cornerRadius(14)
-            .shadow(color: (self.colorScheme == .dark ? Color.white : Color.black).opacity(0.5), radius: 3, x: 3, y: 3)
+            .shadow(color: shadowColor(), radius: 3, x: 3, y: 3)
             GeometryReader { proxy in
                 ZStack {
                     ForEach(actionContents.indices){index in
@@ -48,7 +70,7 @@ public struct BaseInfo<Content,Data>: View where Content:View, Data : Identifiab
                                 .frame(width: ( chosenData != nil && chosenData!.id  == data.id ) ? -dragWidth * CGFloat(( actionContents.count - index  )) : 0, height: proxy.size.height,alignment: .leading)
                             .background(colors[colors.count-index-1].backgroundColor)
                             .cornerRadius(10)
-                                .shadow(color: (self.colorScheme == .dark ? Color.white : Color.black).opacity(0.5), radius: 3, x: 3, y: 3)
+                                .shadow(color: shadowColor(), radius: 3, x: 3, y: 3)
                         }
                     }
                 }
