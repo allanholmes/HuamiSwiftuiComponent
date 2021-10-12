@@ -35,6 +35,7 @@ open class BaseCoreDataService<ENTITY,MODEL> where ENTITY:NSManagedObject,MODEL:
     open func addModel(model:MODEL){
         var entity = ENTITY(context: viewContext)
         model.fill(entity: entity as! MODEL.NSManagedObject)
+        model.updateTime = Date()
         do {
             try viewContext.save()
         }catch{
@@ -43,6 +44,21 @@ open class BaseCoreDataService<ENTITY,MODEL> where ENTITY:NSManagedObject,MODEL:
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
+    }
+    
+    open func updateModel(model:MODEL){
+        var entity = ENTITY(context: viewContext)
+        model.fill(entity: entity as! MODEL.NSManagedObject)
+        model.updateTime = Date()
+        do {
+            try viewContext.save()
+        }catch{
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        
     }
     
     open func deleteModels(request:NSFetchRequest<ENTITY>){

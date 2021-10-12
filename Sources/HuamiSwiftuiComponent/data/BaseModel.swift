@@ -13,6 +13,8 @@ public protocol BaseModel:Identifiable{
     
     var id:UUID { get set }
     
+    var updateTime:Date { get set }
+    
     init(entity:NSManagedObject)
     
     func fill(entity:NSManagedObject)
