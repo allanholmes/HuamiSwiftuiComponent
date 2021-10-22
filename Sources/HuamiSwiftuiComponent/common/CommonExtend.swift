@@ -94,3 +94,18 @@ extension View {
         AnyView(self)
     }
 }
+
+
+@available(iOS 14.0, macOS 10.15, *)
+extension TextInput {
+    public func toSearchField() -> some View {
+        ZStack{
+            self
+                .textFieldStyle(.roundedBorder)
+            HStack{
+                Spacer()
+                Image(systemName: "magnifyingglass").padding(.trailing)
+            }
+        }
+    }
+}

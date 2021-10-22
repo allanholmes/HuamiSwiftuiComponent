@@ -28,15 +28,19 @@ public struct TextInput: View {
     
     public var body: some View {
         ZStack{
-            HStack{
-                Text("\(placeHolder)").fontWeight(.light).foregroundColor(.secondary).padding(8).hidden(!content.isEmpty)
-                Spacer()
+            Group{
+                if multi {
+                    HStack{
+                        Text("\(placeHolder)").fontWeight(.light).foregroundColor(.secondary).padding(8).hidden(!content.isEmpty)
+                        Spacer()
+                    }
+                }
             }
             Group{
                 if multi {
                     TextEditor(text: $content)
                 }else{
-                    TextField("", text: $content)
+                    TextField("\(placeHolder)", text: $content)
                 }
             }
         }
@@ -46,10 +50,12 @@ public struct TextInput: View {
 @available(iOS 14.0, macOS 10.15, *)
 struct TextInput_Previews: PreviewProvider {
     static var previews: some View {
-        Form{
-            TextInput(content: .constant(""), placeHolder: "placeHolder", multi: true)
-            TextInput(content: .constant(""), placeHolder: "placeHolder", multi: false)
-
+        VStack{
+//            TextInput(content: .constant(""), placeHolder: "placeHolder", multi: true)
+//            TextInput(content: .constant(""), placeHolder: "placeHolder", multi: false)
+            TextInput(content: .constant(""),placeHolder: "placeHolder",multi: false)
+                .toSearchField()
+            
         }
     }
 }
